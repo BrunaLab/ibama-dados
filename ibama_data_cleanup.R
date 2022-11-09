@@ -58,16 +58,18 @@ dupes
 dados %>% summarize(n=n_distinct(seq_auto_infracao))
 
 # Number of species (by scientific name, note all NA pooled)
-dados %>% summarize(n=n_distinct(nome_cientifico))
+dados %>% 
+  summarize(n=n_distinct(nome_cientifico))
 
 # Number of species (by scientific name, note all NA pooled)
-dados %>% summarize(n=n_distinct(nome_popular))
+dados %>% 
+  summarize(n=n_distinct(nome_popular))
 
 
 summary_test <- dados_lei %>% 
   group_by(seq_auto_infracao,tipo,grupo,nome_cientifico,nome_popular) %>% 
   summarize(n=n()) %>% 
-  arrange(desc(n))
+  arrange(desc(seq_auto_infracao))
 summary_test
 
 write_csv(summary_test,"./data_clean/summary_test.csv")
